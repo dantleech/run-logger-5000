@@ -38,7 +38,7 @@ class Run
         $this->date = new DateTime('c');
     }
 
-    public function getRoute(): string
+    public function getRoute(): Route
     {
         return $this->route;
     }

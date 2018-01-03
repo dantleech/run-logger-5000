@@ -23,13 +23,18 @@
             <tr>
                 <th>Date</th>
                 <th>Time</th>
+                <th>MPH</th>
+                <th>Marathon Time</th>
             </tr>
         </thead>
+        <tbody>
         <tbody>
         {% for run in route.runs %}
         <tr>
             <td>{{ run.date.format('l jS F Y, H:i:s') }}</td>
             <td>{{ run.seconds }} seconds</td>
+            <td>{{ run|mph }} mph</td>
+            <td>{{ run|marathon_time }} seconds</td>
         </tr>
         {% endfor %}
         </tbody>

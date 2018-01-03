@@ -153,5 +153,50 @@ Scenario: View route
     Then I should see the "Home to Inviqa" route details
 ```
 
-1. Add a new route `/routes/{id}/view`
-2. Show the route details (i.e. title and number of meters)
+1. Add a new route `/routes/{id}/view`.
+2. Show the route details (i.e. title and number of meters).
+3. Link to view route from route list.
+
+**Bonus**: Use a parameter converter to load the doctrine entity.
+
+Add Run
+-------
+
+```gherkin
+Feature: Log run
+    As a runner
+    In order that I can monitor and improve my performance
+    I need to be able to log my runs
+
+    Scenario: Log run
+        Given the following routes exist:
+            | title               | distance |
+            | Home to Inviqa      | 7km      |
+        And I am on the route page for "Home to Inviqa"
+        When I log a run with time "35 minutes"
+        Then I should see a success notification
+        And the run should be listed on the route page
+```
+
+1. Create `RunController` and add a log run action with route
+   `/routes/{routeId}/runs/log`
+2. Ensure that the runs are listed on the route view page.
+
+Show Run Statistics
+--------------------
+
+```gherkin
+    Scenario: View run statistics
+        Given I ran "35 minutes" on route "Weisensee lake"
+        And I am on the route page for "Weisensee lake"
+        Then I should see that my average speed was "8.58kmph"
+        And that my marathon time is "4 hours 55 minutes"
+```
+
+1. Create a new class `App\Service\Statistics` with methods `averageSpeed(int
+   $meters, int $seconds): int` and `marathonTime(int $meters, int $seconds):
+   int`. They should return __meters per hour__ and __time in seconds__ respectively.
+2. Create a Twig extension `App\Twig\RunLoggerExtension extends
+   Twig\Extension`. Add filters `marathon_time` and `mph`.
+3. Apply the columns for the new values in the run table.
+
