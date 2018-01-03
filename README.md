@@ -103,16 +103,16 @@ List routes
 -----------
 
 ```gherkin
-    Scenario: List all routes
-        Given the following routes exist:
-            | title               | distance |
-            | Home to Inviqa      | 7km      |
-            | Brandenberg gate    | 12km     |
-        When I am on the route listing page
-        Then I should see the following routes listed:
-            | title            |
-            | Home to Inviqa   |
-            | Brandenberg gate |
+Scenario: List all routes
+    Given the following routes exist:
+        | title               | distance |
+        | Home to Inviqa      | 7km      |
+        | Brandenberg gate    | 12km     |
+    When I am on the route listing page
+    Then I should see the following routes listed:
+        | title            |
+        | Home to Inviqa   |
+        | Brandenberg gate |
 ```
 
 1. Create a controller at `src/Controller/RouteController.php`
@@ -134,3 +134,24 @@ Scenario: Create route
         | title                  |
         | Weisensee to Kreuzberg |
 ```
+
+1. Add a new route `/routes/add`.
+2. Create a symfony form for the route (`composer require form`) and
+   [documentation](http://symfony.com/doc/current/forms.html).
+3. Validate the route, persist it and redirect to the list page.
+
+View Route
+----------
+
+```gherkin
+Scenario: View route
+    Given the following routes exist:
+        | title               | distance |
+        | Home to Inviqa      | 7km      |
+    And I am on the route listing page
+    When I click on route "Home to Inviqa"
+    Then I should see the "Home to Inviqa" route details
+```
+
+1. Add a new route `/routes/{id}/view`
+2. Show the route details (i.e. title and number of meters)

@@ -19,12 +19,17 @@ class Route
     /**
      * @ORM\Column(type="string")
      */
-    private $title;
+    private $title = '';
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $meters;
+    private $meters = 0;
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
 
     public function getTitle(): string
     {
