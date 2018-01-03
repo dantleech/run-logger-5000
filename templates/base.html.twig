@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        <link rel="stylesheet" href="{{ asset('assets/semantic.min.css') }}" />
+    </head>
+    <body>
+        <div class="ui container">
+            <h1><a href="{{ path('route_list') }}"><i class="ui icon meh"></i></a> Run Logger <span style="color: red; font-style: bold;">5000</span></h1>
+            <h2>{{ block('title') }}</h2>
+            <hr />
+            {% block content %}{% endblock %}
+            {% block javascripts %}{% endblock %}
+        </div>
+    </body>
+</html>

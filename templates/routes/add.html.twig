@@ -1,0 +1,13 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Route Add{% endblock %}
+
+{% block content %}
+<div class="ui form">
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input type="submit" class="ui button primary" />
+    {{ form_end(form) }}
+</div>
+{% endblock %}
+

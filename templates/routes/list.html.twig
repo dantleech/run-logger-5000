@@ -1,0 +1,25 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Routes{% endblock %}
+
+{% block content %}
+    <div class="ui navigation">
+        <a class="ui button primary" href="{{ path('route_add') }}"><i class="ui icon plus"></i> Add Route</a>
+    </div>
+    <table class="ui table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Distance</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for route in routes %}
+            <tr>
+                <td><a href="{{ path('route_view', { id: route.id }) }}">{{ route.title }}</a></td>
+                <td>{{ route.meters }}m</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

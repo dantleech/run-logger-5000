@@ -1,0 +1,20 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Route View{% endblock %}
+
+{% block content %}
+<div class="ui form">
+    <table class="ui definition table">
+        <tr>
+            <td>Title</td>
+            <td>{{ route.title }}</td>
+        </tr>
+        <tr>
+            <td>Distance</td>
+            <td>{{ route.meters }}m</td>
+        </tr>
+    </table>
+</div>
+{% endblock %}
+
+
