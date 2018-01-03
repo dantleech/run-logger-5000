@@ -1,6 +1,14 @@
 SF4 Run Logger Workshop
 -----------------------
 
+Disclaimer
+----------
+
+This workshop provide an introduction to Symfony 4 and Flex, some previous
+knowledge of Symfony or a similar MVC framework would be an advantage.
+
+This workshop will not attempt to be architecturally sophisticated.
+
 Brief
 -----
 
@@ -38,6 +46,11 @@ Make a web application which does this!
 Getting Started
 ----------------
 
+Pre-requsites:
+
+- Composer
+- Database (sqlite3, mysql, whatever)
+
 Created project using:
 
     $ composer create-project symfony/skeleton sf4-workshop
@@ -46,14 +59,13 @@ Serve using:
 
     $ php -S 127.0.0.1:8000 -t public
 
-Database
---------
+### Database
 
 ```
 $ composer require doctrine
 ```
 
-- Use the `pdo_sqlite` driver
+- Use the `pdo_sqlite` driver (or whatever you prefer), see:
     - `config/packages/doctrine.yaml`
     - `.env`
 
@@ -74,7 +86,7 @@ $ composer require doctrine
             +-----------------+
             | +route:Route    |
             | +date:DateTime  |
-            | +minutes:int    |
+            | +seconds:int    |
             +-----------------+
 ```
 
@@ -87,4 +99,38 @@ And:
 $ ./bin/console doctrine:schema:create --force
 ```
 
+List routes
+-----------
 
+```gherkin
+    Scenario: List all routes
+        Given the following routes exist:
+            | title               | distance |
+            | Home to Inviqa      | 7km      |
+            | Brandenberg gate    | 12km     |
+        When I am on the route listing page
+        Then I should see the following routes listed:
+            | title            |
+            | Home to Inviqa   |
+            | Brandenberg gate |
+```
+
+1. Create a controller at `src/Controller/RouteController.php`
+2. Make it extend `Controller`
+3. Use `@Route("/routes")` to route
+4. Include Twig `composer require twig`
+5. Create some routes (`INSERT INTO route (title, distance) VALUES ("5K Park Run", 5000)`).
+6. Render all routes as a table
+
+Create Route
+------------
+
+```gherkin
+Scenario: Create route
+    Given I am on the route listing page
+    When I create a new route "Weisensee to Kreuzberg" with distance "10km"
+    And I am on the route listing page
+    Then I should see the following routes listed:
+        | title                  |
+        | Weisensee to Kreuzberg |
+```

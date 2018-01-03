@@ -4,16 +4,21 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Annotation\Route as R;
 use Symfony\Component\HttpFoundation\Request;
+use App\Entity\Route;
 
 class RouteController extends Controller
 {
     /**
-     * @Route("/routes")
+     * @R("/routes")
      */
     public function list(Request $request)
     {
-        return new Response('Hello World');
+        $routes = $this->get('doctrine')->getRepository(Route::class)->findAll();
+
+        return $this->render('routes/list.html.twig', [
+            'routes' => $routes,
+        ]);
     }
 }
