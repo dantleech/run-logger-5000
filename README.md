@@ -1,6 +1,8 @@
 SF4 Run Logger Workshop
 -----------------------
 
+![runlogger](https://user-images.githubusercontent.com/530801/34525560-b1b22ab6-f09f-11e7-9993-5e125dee1b16.png)
+
 Disclaimer
 ----------
 
@@ -199,4 +201,3 @@ Show Run Statistics
 2. Create a Twig extension `App\Twig\RunLoggerExtension extends
    Twig\Extension`. Add filters `marathon_time` and `mph`.
 3. Apply the columns for the new values in the run table.
-
