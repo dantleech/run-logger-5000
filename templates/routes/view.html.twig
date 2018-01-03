@@ -17,6 +17,23 @@
             <td>{{ route.meters }}m</td>
         </tr>
     </table>
+    <h2>Runs</h2>
+    <table class="ui table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for run in route.runs %}
+        <tr>
+            <td>{{ run.date.format('l jS F Y, H:i:s') }}</td>
+            <td>{{ run.seconds }} seconds</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 </div>
 {% endblock %}
 

@@ -26,6 +26,11 @@ class Route
      */
     private $meters = 0;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Run", mappedBy="route")
+     */
+    private $runs;
+
     public function getId(): int
     {
         return $this->id;
@@ -49,5 +54,10 @@ class Route
     public function setMeters(int $meters)
     {
         $this->meters = $meters;
+    }
+
+    public function getRuns()
+    {
+        return $this->runs;
     }
 }
