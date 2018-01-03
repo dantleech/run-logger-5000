@@ -30,7 +30,7 @@ class RouteController extends Controller
     {
         $form = $this->createForm(RouteType::class);
 
-        if ($form->handleRequest($request) && $form->isValid()) {
+        if ($form->handleRequest($request) && $form->isSubmitted() && $form->isValid()) {
             $this->get('doctrine')->getManager()->persist($form->getData());
             $this->get('doctrine')->getManager()->flush();
 

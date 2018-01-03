@@ -4,6 +4,9 @@
 
 {% block content %}
 <div class="ui form">
+    <div class="ui navigation">
+        <a class="ui button primary" href="{{ path('log_run', { id: route.id }) }}"><i class="ui icon clock"></i> Log Run</a>
+    </div>
     <table class="ui definition table">
         <tr>
             <td>Title</td>

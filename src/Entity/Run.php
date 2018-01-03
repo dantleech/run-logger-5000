@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use DateTimeImmutable;
 use DateTime;
 
 /**
@@ -30,7 +31,12 @@ class Run
     /**
      * @ORM\Column(type="integer")
      */
-    private $seconds;
+    private $seconds = 0;
+
+    public function __construct()
+    {
+        $this->date = new DateTime('c');
+    }
 
     public function getRoute(): string
     {
@@ -42,7 +48,7 @@ class Run
         $this->route = $route;
     }
 
-    public function getDate(): string
+    public function getDate(): DateTime
     {
         return $this->date;
     }
@@ -52,7 +58,7 @@ class Run
         $this->date = $date;
     }
 
-    public function getSeconds(): string
+    public function getSeconds(): int
     {
         return $this->seconds;
     }
